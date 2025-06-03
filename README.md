@@ -105,6 +105,6 @@ My favorite search engine is [Duck Duck Go](https://duckduckgo.com)
 
 ## Images
   Image of coffee bean mascot:
-    ![Chuck Bean](Chuck Bean.jpg)
+    ![image](Chuck Bean.jpg)
 
 ## The End
