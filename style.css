@@ -106,10 +106,6 @@ main {
   font-family: var(--font-body);
 }
 
-.leaflet-tile {
-  filter: grayscale(0.25) brightness(0.75) contrast(1.05);
-}
-
 .leaflet-popup-content-wrapper {
   background: var(--night-soft);
   color: var(--fog);
