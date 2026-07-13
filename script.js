@@ -1,14 +1,19 @@
-// Central Coast, NSW — roughly centered between Gosford and Terrigal
-const DEFAULT_CENTER = [-33.43, 151.38];
-const DEFAULT_ZOOM = 11;
+// The Peninsula: Woy Woy, Blackwall, Ettalong Beach, Booker Bay, Umina Beach
+// down to Pearl Beach — the strip of land between Brisbane Water and Broken Bay.
+const PENINSULA_BOUNDS = [
+  [-33.55, 151.295],
+  [-33.47, 151.34],
+];
 
 const map = L.map('map', {
   zoomControl: true,
-}).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+}).fitBounds(PENINSULA_BOUNDS);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  maxZoom: 19,
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 20,
 }).addTo(map);
 
 const pumpkinIcon = L.divIcon({
@@ -37,8 +42,6 @@ function renderLocations(locations) {
 
   emptyEl.classList.add('hidden');
   countEl.textContent = `${locations.length} house${locations.length === 1 ? '' : 's'} registered`;
-
-  const markers = [];
 
   locations.forEach((loc) => {
     if (typeof loc.lat !== 'number' || typeof loc.lng !== 'number') return;
@@ -75,14 +78,7 @@ function renderLocations(locations) {
     `,
       { maxWidth: 260 }
     );
-
-    markers.push(marker);
   });
-
-  if (markers.length > 0) {
-    const group = L.featureGroup(markers);
-    map.fitBounds(group.getBounds().pad(0.2), { maxZoom: 14 });
-  }
 }
 
 fetch('data/locations.json', { cache: 'no-store' })
