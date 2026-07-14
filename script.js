@@ -221,7 +221,7 @@ async function buildMap() {
   map.addControl(
     new maplibregl.AttributionControl({
       compact: true,
-      customAttribution: 'Map data © OpenStreetMap contributors · Tiles by OpenFreeMap',
+      customAttribution: 'Map data © OpenStreetMap contributors · Tiles by OpenFreeMap · Geocoding by LocationIQ.com',
     })
   );
 
