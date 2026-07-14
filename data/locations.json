@@ -1,20 +1,5 @@
 [
   {
-    "id": "mrk41ep7ekzg",
-    "name": "Getalong Ettalong",
-    "address": "51 The Esplanade, Ettalong Beach, NSW, Australia",
-    "hours": "5:00 PM - 8:00 PM",
-    "treats": "Lollipops or hard candy,Gummy candy,Full-size candy bars,Chips or savory snacks",
-    "allergens": [
-      "GF",
-      "NF"
-    ],
-    "description": "Here's a really cool description for the map location assuming it shows up.  We copy pasta'd the secret key in for this location IQ thing so it should work.  If it doesn't, and I don't get a new error, I may give up.",
-    "lat": -33.5145549,
-    "lng": 151.3346083,
-    "submittedAt": "2026-07-14T03:47:20.876Z"
-  },
-  {
     "id": "mrk48lipmh9k",
     "name": "The Pool House",
     "address": "243 Blackwall Rd, Woy Woy, NSW, Australia",
@@ -24,75 +9,9 @@
       "DF"
     ],
     "description": "",
-    "lat": -33.4859219,
-    "lng": 151.3248287,
-    "submittedAt": "2026-07-14T03:52:56.305Z"
-  },
-  {
-    "id": "mrk58p0awsgd",
-    "name": "Google Maps API Test",
-    "address": "52 Barrenjoey Road, Ettalong Beach, New South Wales, 2257, Australia",
-    "hours": "",
-    "treats": "",
-    "allergens": [],
-    "description": "",
-    "lat": -33.5127898,
-    "lng": 151.3303492,
-    "submittedAt": "2026-07-14T04:21:00.442Z"
-  },
-  {
-    "id": "mrk5uqzvw6zb",
-    "name": "Google Maps API Test",
-    "address": "52 Barrenjoey Road, Ettalong Beach, New South Wales, 2257, Australia",
-    "hours": "",
-    "treats": "",
-    "allergens": [],
-    "description": "",
-    "lat": -33.5126463,
-    "lng": 151.330649,
-    "submittedAt": "2026-07-14T04:38:09.451Z"
-  },
-  {
-    "id": "mrk5x2ksz3g5",
-    "name": "Pool Hall Test 2",
-    "address": "243 Blackwall Road, Woy Woy, New South Wales, 2256, Australia",
-    "hours": "6:00 PM - 9:00 PM",
-    "treats": "Full-size candy bars,Lollipops or hard candy,Non-chocolate candy",
-    "allergens": [
-      "DF",
-      "NF"
-    ],
-    "description": "",
     "lat": -33.4966778,
     "lng": 151.327856,
-    "submittedAt": "2026-07-14T04:39:57.772Z"
-  },
-  {
-    "id": "mrk6knnj8quq",
-    "name": "Google Maps API Test",
-    "address": "52 Barrenjoey Road, Ettalong Beach, New South Wales, 2257, Australia",
-    "hours": "",
-    "treats": "",
-    "allergens": [],
-    "description": "",
-    "lat": -33.5126463,
-    "lng": 151.330649,
-    "submittedAt": "2026-07-14T04:58:18.175Z"
-  },
-  {
-    "id": "mrk6u8coizds",
-    "name": "West St TrickandTreat",
-    "address": "274 West Street, Umina Beach, New South Wales, 2257, Australia",
-    "hours": "5:00 PM - 9:00 PM",
-    "treats": "Chocolate candy,Lollipops or hard candy,Gummy candy,Full-size candy bars",
-    "allergens": [
-      "DF",
-      "YF"
-    ],
-    "description": "Come on down to 274 West where the party is happenin'!  We got pumpkins, air fried pumpkin seeds, pumpkin pie, all things pumpkin, Pumpkin!",
-    "lat": -33.5217796,
-    "lng": 151.3204287,
-    "submittedAt": "2026-07-14T05:05:44.904Z"
+    "submittedAt": "2026-07-14T03:52:56.305Z"
   },
   {
     "id": "mrkaj7yvwg04",
