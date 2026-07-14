@@ -1,8 +1,8 @@
 // Runs inside the GitHub Action. Reads the submitted fields from
-// client_payload (a real nested object — sent by a Stepper "Code" step
-// using fetch() + JSON.stringify(), not the flat HTTP Request body editor),
-// geocodes the address with OpenStreetMap's free Nominatim service, and
-// appends the new pin to data/locations.json.
+// client_payload (a real nested object this time — sent by a Stepper
+// "Code" step using fetch() + JSON.stringify(), not the flat HTTP Request
+// body editor), geocodes the address with OpenStreetMap's free Nominatim
+// service, and appends the new pin to data/locations.json.
 
 const fs = require('fs');
 const path = require('path');
@@ -35,7 +35,7 @@ if (!address) {
 
 function geocode(query) {
   const params = new URLSearchParams({
-    q: `${query}, Central Coast, NSW, Australia`,
+    q: query,
     format: 'json',
     limit: '1',
     countrycodes: 'au',
@@ -46,7 +46,9 @@ function geocode(query) {
     hostname: 'nominatim.openstreetmap.org',
     path: `/search?${params.toString()}`,
     headers: {
-      'User-Agent': 'trick-or-treat-map (community project; contact: jenn2nsaus@gmail.com)',
+      // Nominatim's usage policy requires a real identifying User-Agent.
+      // Replace the email below with a real contact address.
+      'User-Agent': 'trick-or-treat-map (community project; contact: you@example.com)',
     },
   };
 
@@ -67,8 +69,25 @@ function geocode(query) {
   });
 }
 
+// Some submissions use a hyphenated street number range (e.g. "51-52 The
+// Esplanade") for a duplex or multi-unit property. OSM/Nominatim almost
+// always only has individual street numbers indexed, so a range like that
+// won't match. If the first lookup comes back empty and the address starts
+// with a number range, retry once using just the first number.
+function simplifyStreetNumberRange(address) {
+  return address.replace(/^(\d+)-\d+(\s)/, '$1$2');
+}
+
 async function main() {
-  const results = await geocode(address);
+  let results = await geocode(address);
+
+  if (!results || results.length === 0) {
+    const simplified = simplifyStreetNumberRange(address);
+    if (simplified !== address) {
+      console.log(`No match for "${address}". Retrying with "${simplified}"...`);
+      results = await geocode(simplified);
+    }
+  }
 
   if (!results || results.length === 0) {
     console.error(`Could not geocode address: "${address}". Skipping.`);
