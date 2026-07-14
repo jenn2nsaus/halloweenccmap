@@ -1,0 +1,45 @@
+name: Add Trick-or-Treat Location
+
+# Triggered by Stepper sending a POST to:
+#   https://api.github.com/repos/<owner>/<repo>/dispatches
+#   { "event_type": "new-location", "client_payload": "name###address###hours###treats###allergens###description" }
+#
+# client_payload is a single delimited string rather than a nested object —
+# Stepper's HTTP Request body editor can't reliably build a real nested
+# object here, and hand-typed JSON around free-text fields breaks if a
+# submission ever contains a stray quote character. See scripts/add-location.js.
+on:
+  repository_dispatch:
+    types: [new-location]
+
+permissions:
+  contents: write
+
+jobs:
+  add-location:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Geocode address and update locations.json
+        env:
+          LOCATION_PAYLOAD: ${{ github.event.client_payload }}
+        run: node scripts/add-location.js
+
+      - name: Commit and push
+        run: |
+          git config user.name "trick-or-treat-bot"
+          git config user.email "actions@github.com"
+          git add data/locations.json
+          git commit -m "Add a new trick-or-treat location" || echo "Nothing to commit"
+          for i in 1 2 3; do
+            git pull --rebase && git push && break
+            echo "Push attempt $i failed, retrying..."
+            sleep 3
+          done
