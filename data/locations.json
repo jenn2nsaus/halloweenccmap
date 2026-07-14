@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": "mrk41ep7ekzg",
+    "name": "Getalong Ettalong",
+    "address": "51 The Esplanade, Ettalong Beach, NSW, Australia",
+    "hours": "5:00 PM - 8:00 PM",
+    "treats": "Lollipops or hard candy,Gummy candy,Full-size candy bars,Chips or savory snacks",
+    "allergens": [
+      "GF",
+      "NF"
+    ],
+    "description": "Here's a really cool description for the map location assuming it shows up.  We copy pasta'd the secret key in for this location IQ thing so it should work.  If it doesn't, and I don't get a new error, I may give up.",
+    "lat": -33.5145549,
+    "lng": 151.3346083,
+    "submittedAt": "2026-07-14T03:47:20.876Z"
+  }
+]
