@@ -22,38 +22,45 @@ function funifyStyle(baseStyle) {
     'aerodrome_label',
     'mountain_peak',
     'boundary',
+    'building',
   ]);
 
   const EXACT_FILL_COLORS = {
-    park: '#BFE8C9',
-    landcover_wood: '#CFEAD2',
-    landcover_grass: '#DDF2D2',
-    landuse_pitch: '#DDF2D2',
-    landuse_track: '#DDF2D2',
-    landuse_residential: '#FFF4E6',
-    water: '#9AD8F2',
+    park: '#4CDD6B',
+    landcover_wood: '#4CDD6B',
+    landcover_grass: '#4CDD6B',
+    landuse_pitch: '#4CDD6B',
+    landuse_track: '#4CDD6B',
+    landcover_sand: '#FF7EC9',
+    landuse_residential: '#E3E3E7',
+    water: '#29C5FF',
   };
 
   const LINE_COLORS = {
-    park_outline: '#CDEBD2',
-    waterway_tunnel: '#9AD8F2',
-    waterway_river: '#9AD8F2',
-    waterway_other: '#9AD8F2',
+    park_outline: '#2FC24D',
+    waterway_tunnel: '#29C5FF',
+    waterway_river: '#29C5FF',
+    waterway_other: '#29C5FF',
   };
 
+  // Simplified to two tiers instead of one color per road class — the
+  // whole point is a calmer, less "detailed" road network, with the
+  // neon landmarks doing the visual work instead.
+  const MAJOR_ROAD = { casing: '#C7C7CC', fill: '#F4F4F6' };
+  const MINOR_ROAD = { casing: '#E3E3E7', fill: '#FBFBFC' };
   const ROAD_COLORS = {
-    motorway: { casing: '#F2704A', fill: '#FFCBA8' },
-    trunk: { casing: '#F2A65A', fill: '#FFE0B2' },
-    primary: { casing: '#F2A65A', fill: '#FFE0B2' },
-    secondary: { casing: '#F2C14E', fill: '#FFF3C4' },
-    tertiary: { casing: '#F2C14E', fill: '#FFF3C4' },
-    link: { casing: '#F2A65A', fill: '#FFE0B2' },
-    minor: { casing: '#E7DCF7', fill: '#FFFFFF' },
-    service: { casing: '#EDE7DE', fill: '#FBF9F5' },
-    track: { casing: '#EDE7DE', fill: '#FBF9F5' },
-    path: { casing: '#5FC9C9', fill: '#5FC9C9' },
-    pedestrian: { casing: '#5FC9C9', fill: '#5FC9C9' },
-    rail: { casing: '#C9BEDD', fill: '#C9BEDD' },
+    motorway: MAJOR_ROAD,
+    trunk: MAJOR_ROAD,
+    primary: MAJOR_ROAD,
+    secondary: MAJOR_ROAD,
+    tertiary: MAJOR_ROAD,
+    link: MAJOR_ROAD,
+    minor: MINOR_ROAD,
+    service: MINOR_ROAD,
+    track: MINOR_ROAD,
+    path: MINOR_ROAD,
+    pedestrian: MINOR_ROAD,
+    rail: MINOR_ROAD,
   };
   const ROAD_ORDER = [
     'motorway', 'trunk', 'primary', 'secondary', 'tertiary',
@@ -68,7 +75,7 @@ function funifyStyle(baseStyle) {
     }
 
     if (layer.id === 'background') {
-      return { ...layer, paint: { ...layer.paint, 'background-color': '#FFF8ED' } };
+      return { ...layer, paint: { ...layer.paint, 'background-color': '#E9E9EC' } };
     }
 
     if (layer.type === 'fill' && layer.id in EXACT_FILL_COLORS) {
@@ -79,31 +86,24 @@ function funifyStyle(baseStyle) {
       return { ...layer, paint: { ...layer.paint, 'line-color': LINE_COLORS[layer.id] } };
     }
 
-    if (layer.id === 'building' && layer.type === 'fill') {
-      return {
-        ...layer,
-        paint: { ...layer.paint, 'fill-color': '#FDEBD3', 'fill-outline-color': '#F2D9B8' },
-      };
-    }
-
     if (sourceLayer === 'water_name') {
       return {
         ...layer,
-        paint: { ...layer.paint, 'text-color': '#1F7A99', 'text-halo-color': '#FFFFFF', 'text-halo-width': 1.2 },
+        paint: { ...layer.paint, 'text-color': '#0080B3', 'text-halo-color': '#FFFFFF', 'text-halo-width': 1.2 },
       };
     }
 
     if (sourceLayer === 'transportation_name') {
       return {
         ...layer,
-        paint: { ...layer.paint, 'text-color': '#6B4A2B', 'text-halo-color': '#FFFFFF', 'text-halo-width': 1.2 },
+        paint: { ...layer.paint, 'text-color': '#5A5A62', 'text-halo-color': '#FFFFFF', 'text-halo-width': 1.2 },
       };
     }
 
     if (sourceLayer === 'place') {
       return {
         ...layer,
-        paint: { ...layer.paint, 'text-color': '#5C3A63', 'text-halo-color': '#FFFFFF', 'text-halo-width': 1.5 },
+        paint: { ...layer.paint, 'text-color': '#3D3D45', 'text-halo-color': '#FFFFFF', 'text-halo-width': 1.5 },
       };
     }
 
