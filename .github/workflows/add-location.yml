@@ -22,15 +22,16 @@ jobs:
         with:
           node-version: 20
 
-      - name: Geocode address and update locations.json
+      - name: Update locations.json
         env:
-          LOCATIONIQ_KEY: ${{ secrets.LOCATIONIQ_KEY }}
           LOCATION_NAME: ${{ github.event.client_payload.name }}
           LOCATION_ADDRESS: ${{ github.event.client_payload.address }}
           LOCATION_HOURS: ${{ github.event.client_payload.hours }}
           LOCATION_TREATS: ${{ github.event.client_payload.treats }}
           LOCATION_ALLERGENS: ${{ github.event.client_payload.allergens }}
           LOCATION_DESCRIPTION: ${{ github.event.client_payload.description }}
+          LOCATION_LAT: ${{ github.event.client_payload.lat }}
+          LOCATION_LNG: ${{ github.event.client_payload.lng }}
         run: node scripts/add-location.js
 
       - name: Commit and push
