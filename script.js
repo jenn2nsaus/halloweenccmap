@@ -129,6 +129,40 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+// Full names for the allergen badge codes. Only codes actually in use
+// across current locations get shown in the header legend.
+const ALLERGEN_LABELS = {
+  GF: 'Gluten Free',
+  DF: 'Dairy Free',
+  NF: 'Nut Free',
+  EF: 'Egg Free',
+  SF: 'Soy Free',
+  YF: 'Yeast Free',
+};
+
+function renderAllergenLegend(locations) {
+  const legendEl = document.getElementById('allergen-legend');
+
+  const codesInUse = new Set();
+  locations.forEach((loc) => {
+    (Array.isArray(loc.allergens) ? loc.allergens : []).forEach((code) => codesInUse.add(code));
+  });
+
+  if (codesInUse.size === 0) {
+    legendEl.classList.add('hidden');
+    return;
+  }
+
+  legendEl.classList.remove('hidden');
+  legendEl.innerHTML = [...codesInUse]
+    .sort()
+    .map((code) => {
+      const label = ALLERGEN_LABELS[code] || code;
+      return `<span class="legend-item"><span class="badge">${escapeHtml(code)}</span> ${escapeHtml(label)}</span>`;
+    })
+    .join('');
+}
+
 function renderLocations(map, locations) {
   const countEl = document.getElementById('house-count');
   const emptyEl = document.getElementById('empty-state');
@@ -136,11 +170,13 @@ function renderLocations(map, locations) {
   if (!locations || locations.length === 0) {
     countEl.textContent = '0 houses registered';
     emptyEl.classList.remove('hidden');
+    renderAllergenLegend([]);
     return;
   }
 
   emptyEl.classList.add('hidden');
   countEl.textContent = `${locations.length} house${locations.length === 1 ? '' : 's'} registered`;
+  renderAllergenLegend(locations);
 
   locations.forEach((loc) => {
     if (typeof loc.lat !== 'number' || typeof loc.lng !== 'number') return;
@@ -221,7 +257,7 @@ async function buildMap() {
   map.addControl(
     new maplibregl.AttributionControl({
       compact: true,
-      customAttribution: 'Map data © OpenStreetMap contributors · Tiles by OpenFreeMap · Geocoding by LocationIQ.com',
+      customAttribution: 'Map data © OpenStreetMap contributors · Tiles by OpenFreeMap',
     })
   );
 
