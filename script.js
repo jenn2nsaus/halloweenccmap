@@ -26,7 +26,7 @@ function funifyStyle(baseStyle) {
   ]);
 
   const EXACT_FILL_COLORS = {
-    park: '#4CDD6B',
+    park: '#17311F',
     landcover_wood: '#4CDD6B',
     landcover_grass: '#4CDD6B',
     landuse_pitch: '#4CDD6B',
