@@ -46,7 +46,7 @@ function geocode(query) {
     hostname: 'nominatim.openstreetmap.org',
     path: `/search?${params.toString()}`,
     headers: {
-      'User-Agent': 'trick-or-treat-map (community project; contact: you@example.com)',
+      'User-Agent': 'trick-or-treat-map (community project; contact: jenn2nsaus@gmail.com)',
     },
   };
 
