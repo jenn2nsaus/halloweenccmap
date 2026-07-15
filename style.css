@@ -269,3 +269,62 @@ main {
     font-size: 1.6rem;
   }
 }
+
+
+/* === Neon Halloween UI upgrade === */
+.site-header{
+  background: linear-gradient(180deg,#060714 0%, #0b0d1f 100%);
+  border-bottom:1px solid rgba(167,108,255,.25);
+  box-shadow:0 10px 40px rgba(0,0,0,.45);
+}
+
+.title-block h1{
+  text-shadow:0 0 12px rgba(255,136,0,.45);
+}
+
+.register-link{
+  background:transparent;
+  color:#ff9f43;
+  border:2px solid #ff7a00;
+  box-shadow:0 0 12px rgba(255,122,0,.5), inset 0 0 12px rgba(255,122,0,.15);
+}
+
+.register-link:hover{
+  box-shadow:0 0 24px rgba(255,122,0,.9), inset 0 0 18px rgba(255,122,0,.2);
+}
+
+#map{
+  background:#050816;
+}
+
+.maplibregl-ctrl-group{
+  background:rgba(24,12,48,.9)!important;
+  border:1px solid rgba(175,120,255,.35)!important;
+  border-radius:18px!important;
+  overflow:hidden;
+}
+
+.maplibregl-ctrl-group button{
+  color:#d7c0ff!important;
+}
+
+.pumpkin-marker{
+  font-size:48px;
+  filter:
+    drop-shadow(0 0 6px #ff8c00)
+    drop-shadow(0 0 18px #ff8c00)
+    drop-shadow(0 0 30px #ff6200);
+}
+
+.badge{
+  background:rgba(124,76,255,.16);
+  border-color:rgba(177,131,255,.45);
+}
+
+.house-count{
+  font-size:1.1rem;
+}
+
+.maplibregl-popup-content{
+  box-shadow:0 0 25px rgba(151,86,255,.25);
+}
