@@ -229,9 +229,11 @@ main {
 }
 
 .pumpkin-svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+  filter:
+    drop-shadow(0 0 5px #ff8c00)
+    drop-shadow(0 0 15px #ff8c00)
+    drop-shadow(0 0 30px #ff6200)
+    drop-shadow(0 0 50px #ff6200);
 }
 
 .pumpkin-marker:hover {
