@@ -26,18 +26,21 @@ function funifyStyle(baseStyle) {
   ]);
 
   const EXACT_FILL_COLORS = {
-    park: '#15381f',
-    landcover_wood: '#15381f',
-    landcover_grass: '#15381f',
-    landuse_pitch: '#15381f',
-    landuse_track: '#15381f',
-    landcover_sand: '#4a1f3d',
-    landuse_residential: '#1e1e28',
+    park: '#26163a',
+    landcover_wood: '#26163a',
+    landcover_grass: '#26163a',
+    landuse_pitch: '#26163a',
+    landuse_track: '#26163a',
+    landcover_sand: '#26163a',
+    landuse_residential: '#1f1a2b',
+    landuse_school: '#1f1a2b',
+    landuse_hospital: '#1f1a2b',
+    landuse_cemetery: '#1f1a2b',
     water: '#0f2a4a',
   };
 
   const LINE_COLORS = {
-    park_outline: '#1f5c33',
+    park_outline: '#3a2050',
     waterway_tunnel: '#0f2a4a',
     waterway_river: '#0f2a4a',
     waterway_other: '#0f2a4a',
@@ -46,8 +49,8 @@ function funifyStyle(baseStyle) {
   // Simplified to two tiers instead of one color per road class — the
   // whole point is a calmer, less "detailed" road network, with the
   // neon landmarks doing the visual work instead.
-  const MAJOR_ROAD = { casing: '#8a8a9a', fill: '#d8d8e2' };
-  const MINOR_ROAD = { casing: '#4a4a57', fill: '#9a9aaa' };
+  const MAJOR_ROAD = { casing: '#3a3540', fill: '#4a4550' };
+  const MINOR_ROAD = { casing: '#221e2a', fill: '#2e2836' };
   const ROAD_COLORS = {
     motorway: MAJOR_ROAD,
     trunk: MAJOR_ROAD,
@@ -155,27 +158,15 @@ const ALLERGEN_LABELS = {
   YF: 'Dye Free',
 };
 
-function renderAllergenLegend(locations) {
+function renderAllergenLegend() {
   const legendEl = document.getElementById('allergen-legend');
-
-  const codesInUse = new Set();
-  locations.forEach((loc) => {
-    (Array.isArray(loc.allergens) ? loc.allergens : []).forEach((code) => codesInUse.add(code));
-  });
-
-  if (codesInUse.size === 0) {
-    legendEl.classList.add('hidden');
-    return;
-  }
+  const ORDER = ['GF', 'DF', 'NF', 'EF', 'SF', 'YF'];
 
   legendEl.classList.remove('hidden');
-  legendEl.innerHTML = [...codesInUse]
-    .sort()
-    .map((code) => {
-      const label = ALLERGEN_LABELS[code] || code;
-      return `<span class="legend-item"><span class="legend-badge">${escapeHtml(code)}</span> ${escapeHtml(label)}</span>`;
-    })
-    .join('');
+  legendEl.innerHTML = ORDER.map((code) => {
+    const label = ALLERGEN_LABELS[code] || code;
+    return `<span class="legend-item"><span class="legend-badge">${escapeHtml(code)}</span> ${escapeHtml(label)}</span>`;
+  }).join('');
 }
 
 function renderLocations(map, locations) {
@@ -185,13 +176,13 @@ function renderLocations(map, locations) {
   if (!locations || locations.length === 0) {
     countEl.textContent = '0 houses registered';
     emptyEl.classList.remove('hidden');
-    renderAllergenLegend([]);
+    renderAllergenLegend();
     return;
   }
 
   emptyEl.classList.add('hidden');
   countEl.textContent = `${locations.length} house${locations.length === 1 ? '' : 's'} registered`;
-  renderAllergenLegend(locations);
+  renderAllergenLegend();
 
   locations.forEach((loc) => {
     if (typeof loc.lat !== 'number' || typeof loc.lng !== 'number') return;

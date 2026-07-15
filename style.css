@@ -154,6 +154,16 @@ main {
   background: var(--night);
 }
 
+.purple-tint {
+  position: absolute;
+  inset: 0;
+  background: #6b3fa0;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* MapLibre overrides so the map + popups fit the night theme */
 .maplibregl-map {
   font-family: var(--font-body);
