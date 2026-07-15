@@ -1,14 +1,19 @@
 :root {
-  --night: #12141c;
-  --night-soft: #1b1e2a;
+  --night: #0a0a10;
+  --night-soft: #15151f;
   --pumpkin: #f2762e;
-  --pumpkin-glow: rgba(242, 118, 46, 0.45);
+  --pumpkin-glow: rgba(242, 118, 46, 0.6);
   --moon: #f5e6a8;
   --fog: #e8e6e0;
-  --fog-dim: #9a9aa5;
+  --fog-dim: #a89ec2;
+  --lavender: #c9bfe8;
 
   --gradient-start: #dc7419;
   --gradient-end: #f8f129;
+  --title-gradient-end: #b4e23c;
+
+  --neon-purple: #b083f0;
+  --neon-purple-glow: rgba(176, 131, 240, 0.55);
 
   --font-title: "Mystery Quest", cursive;
   --font-location: "Baloo 2", sans-serif;
@@ -33,13 +38,6 @@ body {
   flex-direction: column;
 }
 
-#map canvas {
-filter: 
-  brightness(.62)
-  contrast(1.15)
-  saturate(.65);
-}
-
 .site-header {
   display: flex;
   align-items: center;
@@ -47,7 +45,7 @@ filter:
   gap: 16px;
   padding: 14px 24px;
   background: var(--night-soft);
-  border-bottom: 1px solid rgba(245, 230, 168, 0.12);
+  border-bottom: 1px solid rgba(176, 131, 240, 0.2);
   flex-wrap: wrap;
 }
 
@@ -57,16 +55,17 @@ filter:
   font-size: 2.1rem;
   margin: 0;
   letter-spacing: 0.01em;
-  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  background: linear-gradient(90deg, var(--gradient-start), var(--title-gradient-end));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  filter: drop-shadow(0 0 6px rgba(242, 118, 46, 0.65)) drop-shadow(0 0 14px rgba(180, 226, 60, 0.4));
 }
 
 .subtitle {
   margin: 2px 0 0;
   font-size: 0.9rem;
-  color: var(--fog-dim);
+  color: var(--lavender);
 }
 
 .allergen-legend {
@@ -74,8 +73,8 @@ filter:
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  font-size: 0.8rem;
-  color: var(--fog-dim);
+  font-size: 0.85rem;
+  color: var(--lavender);
 }
 
 .allergen-legend.hidden {
@@ -85,8 +84,22 @@ filter:
 .legend-item {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   white-space: nowrap;
+}
+
+.legend-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(176, 131, 240, 0.08);
+  border: 1.5px solid var(--neon-purple);
+  color: var(--neon-purple);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: 0 0 8px var(--neon-purple-glow);
+  text-shadow: 0 0 6px var(--neon-purple-glow);
 }
 
 .header-actions {
@@ -97,26 +110,36 @@ filter:
 
 .house-count {
   font-size: 0.85rem;
-  color: var(--fog-dim);
+  color: var(--lavender);
   white-space: nowrap;
 }
 
 .register-link {
-  background: var(--pumpkin);
-  color: var(--night);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(242, 118, 46, 0.08);
+  border: 1.5px solid var(--pumpkin);
+  color: var(--pumpkin);
   font-weight: 600;
   font-size: 0.9rem;
-  padding: 9px 16px;
+  padding: 9px 18px;
   border-radius: 999px;
   text-decoration: none;
   white-space: nowrap;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 0 0 0 var(--pumpkin-glow);
+  box-shadow: 0 0 10px var(--pumpkin-glow);
+  text-shadow: 0 0 6px var(--pumpkin-glow);
+}
+
+.register-link::before {
+  content: "🏠";
+  font-size: 0.95em;
 }
 
 .register-link:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 18px var(--pumpkin-glow);
+  box-shadow: 0 0 16px var(--pumpkin-glow), 0 4px 18px var(--pumpkin-glow);
 }
 
 main {
@@ -140,7 +163,7 @@ main {
   background: var(--night-soft);
   color: var(--fog);
   border-radius: 10px;
-  border: 1px solid rgba(245, 230, 168, 0.15);
+  border: 1px solid rgba(176, 131, 240, 0.25);
   padding: 14px 16px;
 }
 
@@ -161,6 +184,7 @@ main {
 }
 
 .maplibregl-popup-content h3 {
+  display: inline-block;
   font-family: var(--font-location);
   font-weight: 700;
   margin: 0 0 6px;
@@ -200,6 +224,48 @@ main {
   margin-bottom: 8px;
 }
 
+/* Zoom controls: dark pill matching the neon theme */
+.maplibregl-ctrl-group {
+  background: var(--night-soft) !important;
+  border: 1px solid rgba(176, 131, 240, 0.25) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4) !important;
+}
+
+.maplibregl-ctrl-group button {
+  background: transparent !important;
+}
+
+.maplibregl-ctrl-group button + button {
+  border-top: 1px solid rgba(176, 131, 240, 0.2) !important;
+}
+
+.maplibregl-ctrl-icon {
+  filter: invert(1) brightness(1.8);
+}
+
+.maplibregl-ctrl button:hover {
+  background: rgba(176, 131, 240, 0.12) !important;
+}
+
+/* Attribution box: dark rounded panel with a soft purple glow */
+.maplibregl-ctrl-attrib {
+  background: var(--night-soft) !important;
+  border: 1px solid rgba(176, 131, 240, 0.3) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 10px rgba(176, 131, 240, 0.15);
+  padding: 4px 8px !important;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: var(--lavender) !important;
+}
+
+.maplibregl-ctrl-attrib-button {
+  filter: invert(1) brightness(1.6);
+}
+
 .allergen-badges {
   display: flex;
   flex-wrap: wrap;
@@ -221,23 +287,17 @@ main {
 }
 
 .pumpkin-marker {
-  width: 70px;
-  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
   cursor: pointer;
-  transform-origin: center bottom;
-  transition: .25s ease;
-}
-
-.pumpkin-svg {
-  filter:
-    drop-shadow(0 0 5px #ff8c00)
-    drop-shadow(0 0 15px #ff8c00)
-    drop-shadow(0 0 30px #ff6200)
-    drop-shadow(0 0 50px #ff6200);
+  filter: drop-shadow(0 0 8px var(--pumpkin-glow)) drop-shadow(0 0 16px var(--pumpkin-glow));
+  transition: transform 0.15s ease;
 }
 
 .pumpkin-marker:hover {
-  transform: scale(1.15);
+  transform: scale(1.2) rotate(-6deg);
 }
 
 .empty-state {
@@ -246,7 +306,7 @@ main {
   left: 50%;
   transform: translateX(-50%);
   background: var(--night-soft);
-  border: 1px solid rgba(245, 230, 168, 0.15);
+  border: 1px solid rgba(176, 131, 240, 0.25);
   border-radius: 12px;
   padding: 16px 22px;
   text-align: center;
@@ -274,63 +334,4 @@ main {
   .title-block h1 {
     font-size: 1.6rem;
   }
-}
-
-
-/* === Neon Halloween UI upgrade === */
-.site-header{
-  background: linear-gradient(180deg,#060714 0%, #0b0d1f 100%);
-  border-bottom:1px solid rgba(167,108,255,.25);
-  box-shadow:0 10px 40px rgba(0,0,0,.45);
-}
-
-.title-block h1{
-  text-shadow:0 0 12px rgba(255,136,0,.45);
-}
-
-.register-link{
-  background:transparent;
-  color:#ff9f43;
-  border:2px solid #ff7a00;
-  box-shadow:0 0 12px rgba(255,122,0,.5), inset 0 0 12px rgba(255,122,0,.15);
-}
-
-.register-link:hover{
-  box-shadow:0 0 24px rgba(255,122,0,.9), inset 0 0 18px rgba(255,122,0,.2);
-}
-
-#map{
-  background:#050816;
-}
-
-.maplibregl-ctrl-group{
-  background:rgba(24,12,48,.9)!important;
-  border:1px solid rgba(175,120,255,.35)!important;
-  border-radius:18px!important;
-  overflow:hidden;
-}
-
-.maplibregl-ctrl-group button{
-  color:#d7c0ff!important;
-}
-
-.pumpkin-marker{
-  font-size:48px;
-  filter:
-    drop-shadow(0 0 6px #ff8c00)
-    drop-shadow(0 0 18px #ff8c00)
-    drop-shadow(0 0 30px #ff6200);
-}
-
-.badge{
-  background:rgba(124,76,255,.16);
-  border-color:rgba(177,131,255,.45);
-}
-
-.house-count{
-  font-size:1.1rem;
-}
-
-.maplibregl-popup-content{
-  box-shadow:0 0 25px rgba(151,86,255,.25);
 }
