@@ -24,21 +24,5 @@
     "lat": -33.5126463,
     "lng": 151.330649,
     "submittedAt": "2026-07-14T06:49:09.655Z"
-  },
-  {
-    "id": "mro59szxl7t2",
-    "name": "The Robinson House",
-    "address": "1 / 62 Ridge Street, Ettalong Beach, New South Wales, 2257, Australia",
-    "hours": "5:00 PM - 9:00 PM",
-    "treats": "Chocolate candy,Non-chocolate candy,Lollipops or hard candy,Gummy candy",
-    "allergens": [
-      "GF",
-      "EF",
-      "NF"
-    ],
-    "description": "Happy Halloween, everyone!",
-    "lat": -33.5155772,
-    "lng": 151.3266673,
-    "submittedAt": "2026-07-16T23:32:56.973Z"
   }
 ]
