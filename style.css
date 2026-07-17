@@ -331,8 +331,6 @@ main {
   justify-content: center;
   width: 42px;
   height: 42px;
-  border-radius: 50%;
-  background: rgba(8, 8, 14, 0.6);
   cursor: pointer;
   font-size: 24px;
   filter: drop-shadow(0 0 2px var(--pumpkin-glow)) drop-shadow(0 0 5px var(--pumpkin-glow));
