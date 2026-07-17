@@ -68,7 +68,7 @@ body {
   filter: drop-shadow(0 0 6px rgba(242, 118, 46, 0.65)) drop-shadow(0 0 14px rgba(180, 226, 60, 0.4));
 }
 
-/* Shared outlined jack-o-lantern icon — used in the header and on every pin */
+/* Shared outlined jack-o-lantern icon â€” used in the header and on every pin */
 .pumpkin-icon {
   fill: none;
   stroke: var(--pumpkin);
@@ -79,8 +79,8 @@ body {
 }
 
 .pumpkin-icon-header {
-  width: 34px;
   height: 34px;
+  width: auto;
   flex-shrink: 0;
 }
 
@@ -177,7 +177,7 @@ img.pumpkin-icon {
 }
 
 .register-link::before {
-  content: "🏠";
+  content: "ðŸ ";
   font-size: 0.95em;
 }
 
@@ -385,7 +385,7 @@ main {
     font-size: 1.6rem;
   }
   .pumpkin-icon-header {
-    width: 26px;
     height: 26px;
+    width: auto;
   }
 }
