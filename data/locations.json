@@ -24,5 +24,21 @@
     "lat": -33.5126463,
     "lng": 151.330649,
     "submittedAt": "2026-07-14T06:49:09.655Z"
+  },
+  {
+    "id": "ms196mu67yr7",
+    "name": "Booger Central",
+    "address": "1 Railway Street, Woy Woy, New South Wales, 2256, Australia",
+    "hours": "5:00 PM - 8:00 PM",
+    "treats": "Chocolate candy,Non-chocolate candy,Lollipops or hard candy",
+    "allergens": [
+      "GF",
+      "EF",
+      "DF"
+    ],
+    "description": "Trick or treat",
+    "lat": -33.4892936,
+    "lng": 151.3198135,
+    "submittedAt": "2026-07-26T03:43:27.774Z"
   }
 ]
