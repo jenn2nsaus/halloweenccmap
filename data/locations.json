@@ -68,5 +68,19 @@
     "lat": -33.5211345,
     "lng": 151.3178878,
     "submittedAt": "2026-10-27T00:28:41.163Z"
+  },
+  {
+    "id": "mvzsy4ap05ll",
+    "name": "Your moms house",
+    "address": "20 Barbarossa Drive, Caversham, Western Australia, 6055, Australia",
+    "hours": "5:00 PM - 7:00 PM",
+    "treats": "Chocolate candy,Non-chocolate candy,Lollipops or hard candy,Gummy candy",
+    "allergens": [
+      "DF"
+    ],
+    "description": "",
+    "lat": -31.8651123,
+    "lng": 115.9651421,
+    "submittedAt": "2026-11-02T21:59:59.809Z"
   }
 ]
