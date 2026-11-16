@@ -82,5 +82,21 @@
     "lat": -31.8651123,
     "lng": 115.9651421,
     "submittedAt": "2026-11-02T21:59:59.809Z"
+  },
+  {
+    "id": "mwj3v8w1o2c3",
+    "name": "Test Location",
+    "address": "1 Barrenjoey Road, Ettalong Beach, New South Wales, 2257, Australia",
+    "hours": "7:00 PM - 8:00 PM",
+    "treats": "Lollipops or hard candy,Gummy candy,Full-size candy bars,Allergy-friendly treats",
+    "allergens": [
+      "EF",
+      "NF",
+      "SF"
+    ],
+    "description": "Creative spices like tumeric and cinnamon will also be on offer.  'Cause why not?  Saffron will not be, though.  It's too expensive.",
+    "lat": -33.5093782,
+    "lng": 151.330704,
+    "submittedAt": "2026-11-16T10:13:18.913Z"
   }
 ]
