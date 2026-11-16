@@ -98,5 +98,17 @@
     "lat": -33.5093782,
     "lng": 151.330704,
     "submittedAt": "2026-11-16T10:13:18.913Z"
+  },
+  {
+    "id": "mwj422i93zdy",
+    "name": "Creative Bakery",
+    "address": "2 Lone Pine Avenue, Umina Beach, New South Wales, 2257, Australia",
+    "hours": "6:00 PM - 8:00 PM",
+    "treats": "Non-chocolate candy,Gummy candy,Full-size candy bars",
+    "allergens": [],
+    "description": "Mainly baked goods will be here!",
+    "lat": -33.514214,
+    "lng": 151.3171763,
+    "submittedAt": "2026-11-16T10:18:37.233Z"
   }
 ]
